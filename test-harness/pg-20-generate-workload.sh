@@ -4,7 +4,7 @@
 
 cat test-harness/db_init_pg.sql
 
-for FILE in  join-order-benchmark-gregrahn/[0-9]*.sql ; do 
+for FILE in  queries-orig/[0-9]*.sql ; do 
 
   QUERY_NAME=`basename $FILE`
   QUERY_NAME=${QUERY_NAME/.sql/}

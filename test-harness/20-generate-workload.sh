@@ -5,7 +5,7 @@
 cat test-harness/db_init_mariadb.sql
 
 # for FILE in join-order-benchmark/[0-9]*.sql ; do 
-for FILE in join-order-benchmark-2/queries/[0-9]*.sql ; do 
+for FILE in queries-mysql/[0-9]*.sql ; do 
 
   QUERY_NAME=`basename $FILE`
   QUERY_NAME=${QUERY_NAME/.sql/}
