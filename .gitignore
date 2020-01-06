@@ -3,3 +3,7 @@ mariadb-10.4
 mariadb-10.4-data
 imdb-2014-csv-mysql
 my-mariadb-10.4.cnf
+mysql-boost
+mysql-8.0
+mysql8-data/
+tmp-mysql

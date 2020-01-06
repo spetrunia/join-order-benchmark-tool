@@ -37,7 +37,7 @@ secure_file_priv=
 innodb_buffer_pool_size=4G
 EOF
 
-cat > mysql-vars.sh <<EOF
+cat > ../mysql-vars.sh <<EOF
 MYSQL="./mysql-$SERVER_VERSION/bin/mysql"
 MYSQL_SOCKET="--socket=/tmp/mysql20.sock"
 MYSQL_USER="-uroot"
