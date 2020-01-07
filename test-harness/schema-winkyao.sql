@@ -14,7 +14,7 @@ CREATE TABLE aka_name (
     name_pcode_nf varchar(11),
     surname_pcode varchar(11),
     md5sum varchar(65)
-);
+) character set utf8 ;
 
 CREATE TABLE aka_title (
     id integer NOT NULL PRIMARY KEY,
@@ -29,7 +29,7 @@ CREATE TABLE aka_title (
     episode_nr integer,
     note varchar(72),
     md5sum varchar(32)
-);
+) character set utf8 ;
 
 -- psergey: changed "note text" to "note varchar(1000)" below:
 CREATE TABLE cast_info (
@@ -40,7 +40,7 @@ CREATE TABLE cast_info (
     note varchar(1000),
     nr_order integer,
     role_id integer NOT NULL
-);
+) character set utf8 ;
 
 CREATE TABLE char_name (
     id integer NOT NULL PRIMARY KEY,
@@ -50,12 +50,12 @@ CREATE TABLE char_name (
     name_pcode_nf varchar(5),
     surname_pcode varchar(5),
     md5sum varchar(32)
-);
+) character set utf8 ;
 
 CREATE TABLE comp_cast_type (
     id integer NOT NULL PRIMARY KEY,
     kind varchar(32) NOT NULL
-);
+) character set utf8 ;
 
 CREATE TABLE company_name (
     id integer NOT NULL PRIMARY KEY,
@@ -65,40 +65,40 @@ CREATE TABLE company_name (
     name_pcode_nf varchar(5),
     name_pcode_sf varchar(5),
     md5sum varchar(32)
-);
+) character set utf8 ;
 
 CREATE TABLE company_type (
     id integer NOT NULL PRIMARY KEY,
     kind varchar(32)
-);
+) character set utf8 ;
 
 CREATE TABLE complete_cast (
     id integer NOT NULL PRIMARY KEY,
     movie_id integer,
     subject_id integer NOT NULL,
     status_id integer NOT NULL
-);
+) character set utf8 ;
 
 CREATE TABLE info_type (
     id integer NOT NULL PRIMARY KEY,
     info varchar(32) NOT NULL
-);
+) character set utf8 ;
 
 CREATE TABLE keyword (
     id integer NOT NULL PRIMARY KEY,
     keyword varchar(512) NOT NULL,
     phonetic_code varchar(5)
-);
+) character set utf8 ;
 
 CREATE TABLE kind_type (
     id integer NOT NULL PRIMARY KEY,
     kind varchar(15)
-);
+) character set utf8 ;
 
 CREATE TABLE link_type (
     id integer NOT NULL PRIMARY KEY,
     link varchar(32) NOT NULL
-);
+) character set utf8 ;
 
 CREATE TABLE movie_companies (
     id integer NOT NULL PRIMARY KEY,
@@ -106,7 +106,7 @@ CREATE TABLE movie_companies (
     company_id integer NOT NULL,
     company_type_id integer NOT NULL,
     note text
-);
+) character set utf8 ;
 
 CREATE TABLE movie_info_idx (
     id integer NOT NULL PRIMARY KEY,
@@ -114,20 +114,20 @@ CREATE TABLE movie_info_idx (
     info_type_id integer NOT NULL,
     info text NOT NULL,
     note text
-);
+) character set utf8 ;
 
 CREATE TABLE movie_keyword (
     id integer NOT NULL PRIMARY KEY,
     movie_id integer NOT NULL,
     keyword_id integer NOT NULL
-);
+) character set utf8 ;
 
 CREATE TABLE movie_link (
     id integer NOT NULL PRIMARY KEY,
     movie_id integer NOT NULL,
     linked_movie_id integer NOT NULL,
     link_type_id integer NOT NULL
-);
+) character set utf8 ;
 
 CREATE TABLE name (
     id integer NOT NULL PRIMARY KEY,
@@ -139,12 +139,12 @@ CREATE TABLE name (
     name_pcode_nf varchar(5),
     surname_pcode varchar(5),
     md5sum varchar(32)
-);
+) character set utf8 ;
 
 CREATE TABLE role_type (
     id integer NOT NULL PRIMARY KEY,
     role varchar(32) NOT NULL
-);
+) character set utf8;
 
 CREATE TABLE title (
     id integer NOT NULL PRIMARY KEY,
@@ -159,7 +159,7 @@ CREATE TABLE title (
     episode_nr integer,
     series_years varchar(49),
     md5sum varchar(32)
-);
+) character set utf8;
 
 CREATE TABLE movie_info (
     id integer NOT NULL PRIMARY KEY,
@@ -167,7 +167,7 @@ CREATE TABLE movie_info (
     info_type_id integer NOT NULL,
     info text NOT NULL,
     note text
-);
+) character set utf8;
 
 CREATE TABLE person_info (
     id integer NOT NULL PRIMARY KEY,
@@ -175,4 +175,4 @@ CREATE TABLE person_info (
     info_type_id integer NOT NULL,
     info text NOT NULL,
     note text
-);
+) character set utf8;
