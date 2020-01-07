@@ -7,3 +7,10 @@ mysql-boost
 mysql-8.0
 mysql8-data/
 tmp-mysql
+pgdata
+postgresql-12.1-inst
+postgresql-12.1
+postgresql-12.1.tar.bz2
+psql-vars.sh
+tmp-postgresql
+imdb-2014-csv-postgresql

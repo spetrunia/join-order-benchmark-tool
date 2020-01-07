@@ -5,11 +5,15 @@ if [ ! -d /optane/data/imdb-2014-mysql ] ; then
   (cd imdb-2014-csv-postgresql;
    wget http://homepages.cwi.nl/~boncz/job/imdb.tgz;
    tar zxvf imdb.tgz)
+else
+  cp -r /optane/data/imdb-2014-postgresql imdb-2014-csv-postgresql
 fi
 
 if [ ! -d postgresql-12.1-inst ] ; then
   bash setup-server/setup-postgresql-12.sh
 fi
+
+mkdir -p tmp-postgresql
 
 bash test-harness/pg-10-load-data.sh
 
