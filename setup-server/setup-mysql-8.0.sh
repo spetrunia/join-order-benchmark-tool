@@ -49,3 +49,24 @@ cp mysql-vars.sh mysql-$BRANCH-vars.sh
 cd $HOMEDIR/mysql-$SERVER_VERSION/sql
 ../runtime_output_directory/mysqld --defaults-file=$HOMEDIR/my-mysql-8.0.cnf &
 
+cd $HOMEDIR
+
+source mysql-vars.sh
+client_attempts=0
+while true ; do
+  echo $MYSQL $MYSQL_ARGS -e "select version()";
+  $MYSQL $MYSQL_ARGS -e "select version()";
+
+  if [ $? -eq 0 ]; then
+    break
+  fi
+  sleep 1
+
+  client_attempts=$((client_attempts + 1))
+  if [ $client_attempts -ge 30 ]; then
+    echo "Failed to start server."
+    exit 1
+  fi
+done
+
+echo "Done setting up MySQL 8"
