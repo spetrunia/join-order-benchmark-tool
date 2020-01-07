@@ -1,0 +1,11 @@
+--- imdb-2014-csv-mysql/person_info.csv	2020-01-07 12:54:19.702284685 +0000
++++ imdb-2014-csv-mysql/person_info.csv	2020-01-07 12:54:50.038522556 +0000
+@@ -2671663,7 +2671663,7 @@
+ 2671657,1562398,20,"Rosario, Santa Fe, Argentina",\N
+ 2671658,1562398,23,21 October 2004,\N
+ 2671659,1562398,21,13 February 1947,\N
+-2671660,2604773,17,Daughter of Irish actor and raconteur 'Niall Toibin' (qv); \,\N
++2671660,2604773,17,Daughter of Irish actor and raconteur 'Niall Toibin' (qv); \\,\N
+ 2671661,2604773,17,Sister of 'Fiana Toibin' (qv) and 'Sighle Toibin' (qv),\N
+ 2671662,1562399,37,"\"The Sunday Times Culture\" (UK), 26 April 2009",\N
+ 2671663,1562399,15,"Every night, from as early as I can remember, the family knelt in the evening and said the rosary. Each mystery, as they were called, had ten Hail Marys; the first part of each Hail Mary was recited by a single voice, and then the second part - 'Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death. Amen'- by the rest of the family in unison. At the end, my mother would recite some extra prayers including the 'Memorare' which began, 'Remember, O most gracious Virgin Mary, that never was it known that anyone who sought thy aid or implored thy intercession was left unaided'... The line between the private and the public, under uneasy pressures, can become blurred. In Ireland, novels and plays still have a strange force. The writing of fiction and the creation of theatrical images can affect life there more powerfully and stealthily than speeches, or even legislation. Imagined worlds can lodge deeply in the private sphere, dislodging much else, especially when the public sphere is fragile.",\N

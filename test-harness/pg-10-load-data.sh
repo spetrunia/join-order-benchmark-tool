@@ -7,7 +7,7 @@ cat test-harness/table_list.txt | while read a ; do
 done > tmp-postgresql/load-data.sql
 
 $PSQL test < test-harness/schema-original.sql
-$PSQL test < cat tmp-postgresql/load-data.sql 
+$PSQL test < tmp-postgresql/load-data.sql 
 $PSQL test < test-harness/fkindexes.sql
 echo "ANALYZE" | $PSQL test
 
