@@ -1,12 +1,14 @@
 #!/bin/bash
 
-if [ ! -d /optane/data/imdb-2014-mysql ] ; then
+source local_dataset_path.sh
+
+if [ ! -d $LOCAL_DATASET_PATH/imdb-2014-mysql ] ; then
   mkdir -p imdb-2014-csv-postgresql
   (cd imdb-2014-csv-postgresql;
    wget http://homepages.cwi.nl/~boncz/job/imdb.tgz;
    tar zxvf imdb.tgz)
 else
-  cp -r /optane/data/imdb-2014-postgresql imdb-2014-csv-postgresql
+  cp -r $LOCAL_DATASET_PATH/imdb-2014-postgresql imdb-2014-csv-postgresql
 fi
 
 if [ ! -d postgresql-12.1-inst ] ; then
