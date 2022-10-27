@@ -2,6 +2,7 @@
 
 source mysql-vars.sh
 
+sleep 60;
 echo $MYSQL $MYSQL_ARGS -e "drop database if exists imdbload"
 $MYSQL $MYSQL_ARGS -e "drop database if exists imdbload"
 $MYSQL $MYSQL_ARGS -e "create database imdbload"
