@@ -37,6 +37,7 @@ for FILE in queries-mysql/[0-9]*.sql ; do
  (
    echo "-- ### QUERY $QUERY_NAME ##########################################"
    echo "-- ### Warmup and trace"
+   echo "set optimizer_trace_max_mem_size=64*1024*1024;"
    echo "set optimizer_trace=1;"
    echo "ANALYZE FORMAT=JSON"
    cat $FILE
