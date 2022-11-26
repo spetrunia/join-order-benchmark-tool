@@ -26,7 +26,8 @@ cd mariadb-$BRANCH
 git submodule init
 git submodule update
 cmake . -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-  -DWITHOUT_MROONGA:bool=1 -DWITHOUT_TOKUDB:bool=1
+  -DWITHOUT_MROONGA:bool=1 -DWITHOUT_TOKUDB:bool=1 \
+  -DWITH_EMBEDDED_SERVER:bool=0 -DWITH_UNIT_TESTS:bool=0
 make -j8
 cd .. 
 )
