@@ -87,23 +87,7 @@ cd $HOMEDIR/mariadb-$BRANCH/sql
 ../sql/mysqld --defaults-file=$HOMEDIR/my-mariadb-$BRANCH.cnf &
 )
 
-
-client_attempts=0
-while true ; do
-  echo $MYSQL $MYSQL_ARGS -e "select version()";
-  $MYSQL $MYSQL_ARGS -e "select version()";
-
-  if [ $? -eq 0 ]; then
-    break
-  fi
-  sleep 1
-
-  client_attempts=$((client_attempts + 1))
-  if [ $client_attempts -ge 30 ]; then
-    echo "Failed to start server."
-    exit 1
-  fi
-done
+bash ./setup-server/wait_for_start.sh
 
 echo "Done setting up MariaDB"
 
