@@ -35,6 +35,7 @@ cd ..
 (
   cd mariadb-$BRANCH/mysql-test
   ./mtr alias
+  chmod -R +rw var/install.db 
   cp -r var/install.db $DATADIR
 )
 
