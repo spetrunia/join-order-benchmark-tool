@@ -5,7 +5,7 @@
 #  imdb-2014-mysql
 #  imdb-2014-postgresql
 #
-LOCAL_DATASET_PATH=/data/data
+LOCAL_DATASET_PATH=~/data/data
 
 
 #

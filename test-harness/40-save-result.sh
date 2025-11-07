@@ -2,5 +2,5 @@
 
 source mysql-vars.sh
 
-echo "select * from my_job_result" | $MYSQL $MYSQL_ARGS imdbload | tee -a tmp-mariadb/result.txt
+echo "select * from my_job_result" | $MYSQL $MYSQL_ARGS imdbload | tee -a tmp-mariadb/$BRANCH-result.txt
 
