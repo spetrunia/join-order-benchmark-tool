@@ -16,8 +16,9 @@ DATADIR="$HOMEDIR/mariadb-$BRANCH-data"
 if [ -d $DATADIR ] ; then
   echo "Data directory $DATADIR exists, will not overwrite it "
   du -hs $DATADIR
-  exit 1;
 fi
+
+if [ ! -d $HOMEDIR/mariadb-$BRANCH ]; then
 
 git clone --branch $BRANCH --depth 1 https://github.com/MariaDB/server.git mariadb-$BRANCH
 
@@ -38,6 +39,7 @@ cd ..
   chmod -R +rw var/install.db 
   cp -r var/install.db $DATADIR
 )
+fi
 
 # Guess a reasonable socket name
 source_dir=`pwd`
@@ -55,7 +57,7 @@ SOCKETNAME="/tmp/$socket_name"
 # binlog-format=row
 
 cat > $HOMEDIR/my-mariadb-$BRANCH.cnf << EOF
-[mysqld]
+[mariadbd]
 
 bind-address=0.0.0.0
 datadir=$DATADIR
@@ -75,7 +77,7 @@ innodb_buffer_pool_size=8G
 EOF
 
 cat > mysql-vars.sh <<EOF
-MYSQL="./mariadb-$BRANCH/client/mysql"
+MYSQL="./mariadb-$BRANCH/client/mariadb"
 MYSQL_SOCKET="--socket=$SOCKETNAME"
 MYSQL_USER="-uroot"
 MYSQL_ARGS="\$MYSQL_USER \$MYSQL_SOCKET"
@@ -84,10 +86,30 @@ EOF
 source mysql-vars.sh
 cp mysql-vars.sh mariadb-$BRANCH-vars.sh
 
+
+check_server(){
+    if pgrep -f "mariadbd.*$BRANCH" > /dev/null 2>&1 ; then
+       return 0
+    else
+       return 1
+    fi
+}
+
+start_server(){
+echo "Starting server"
 (
 cd $HOMEDIR/mariadb-$BRANCH/sql
-../sql/mysqld --defaults-file=$HOMEDIR/my-mariadb-$BRANCH.cnf &
+./mariadbd --defaults-file=$HOMEDIR/my-mariadb-$BRANCH.cnf &
 )
+}
+
+
+if check_server; then
+   echo "Server already running"
+   exit 1;
+else
+   start_server
+fi
 
 bash ./setup-server/wait_for_start.sh
 
