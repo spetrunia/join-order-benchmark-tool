@@ -5,11 +5,11 @@
 #  imdb-2014-mysql
 #  imdb-2014-postgresql
 #
-LOCAL_DATASET_PATH=~/data/data
+LOCAL_DATASET_PATH=~/data
 
 
 #
 # Alternative (just for MariaDB): bzipped file
 #
 
-LOCAL_DUMP_FILE=$HOME/Downloads/imdbload.sql.bz2
+LOCAL_DUMP_FILE=~/data/imdbload.sql.bz2
