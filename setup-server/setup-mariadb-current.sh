@@ -1,7 +1,6 @@
 #!/bin/bash
 
-set -e
-
+#set -e
 
 if [ "x${1}y" == "xy" ] ; then 
   echo "Usage: $0 BRANCH_NAME"
@@ -20,25 +19,35 @@ fi
 
 if [ ! -d $HOMEDIR/mariadb-$BRANCH ]; then
 
-git clone --branch $BRANCH --depth 1 https://github.com/MariaDB/server.git mariadb-$BRANCH
+  if command -v offline-git-clone-mariadb.sh >/dev/null 2>&1; then
+    offline-git-clone-mariadb.sh --branch=$BRANCH mariadb-$BRANCH
+    if [[ $? -ne 0 ]]; then
+      echo "Failed to setup MariaDB"
+      exit 1
+    fi
+  else
+    git clone --branch $BRANCH --depth 1 https://github.com/MariaDB/server.git mariadb-$BRANCH &&
+    (
+      cd mariadb-$BRANCH &&
+      git submodule init  &&
+      git submodule update
+    )
+  fi
 
-(
-cd mariadb-$BRANCH
-git submodule init
-git submodule update
-cmake . -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-  -DWITHOUT_MROONGA:bool=1 -DWITHOUT_TOKUDB:bool=1 \
-  -DWITH_EMBEDDED_SERVER:bool=0 -DWITH_UNIT_TESTS:bool=0
-make -j8
-cd .. 
-)
+  (
+    cd mariadb-$BRANCH
+    cmake . -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+      -DWITHOUT_MROONGA:bool=1 -DWITHOUT_TOKUDB:bool=1 \
+      -DWITH_EMBEDDED_SERVER:bool=0 -DWITH_UNIT_TESTS:bool=0
+    make -j8
+  )
 
-(
-  cd mariadb-$BRANCH/mysql-test
-  ./mtr alias
-  chmod -R +rw var/install.db 
-  cp -r var/install.db $DATADIR
-)
+  (
+    cd mariadb-$BRANCH/mysql-test
+    ./mtr alias
+    chmod -R +rw var/install.db 
+    cp -r var/install.db $DATADIR
+  )
 fi
 
 # Guess a reasonable socket name
@@ -76,15 +85,18 @@ innodb_buffer_pool_size=8G
 
 EOF
 
-cat > mysql-vars.sh <<EOF
-MYSQL="./mariadb-$BRANCH/client/mariadb"
+cat > mariadb-$BRANCH-vars.sh <<EOF
+MYSQL_CMD="./mariadb-$BRANCH/client/mariadb"
 MYSQL_SOCKET="--socket=$SOCKETNAME"
 MYSQL_USER="-uroot"
 MYSQL_ARGS="\$MYSQL_USER \$MYSQL_SOCKET"
+
+MYSQL="$MYSQL_CMD $MYSQL_USER $MYSQL_SOCKET"
+MYSQLD="$HOMEDIR/mariadb-$BRANCH/sql/mariadbd --defaults-file=$HOMEDIR/my-mariadb-$BRANCH.cnf"
 EOF
 
-source mysql-vars.sh
-cp mysql-vars.sh mariadb-$BRANCH-vars.sh
+source mariadb-$BRANCH-vars.sh
+cp mariadb-$BRANCH-vars.sh mysql-vars.sh 
 
 
 check_server(){

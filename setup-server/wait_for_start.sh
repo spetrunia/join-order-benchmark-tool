@@ -5,9 +5,9 @@ source mysql-vars.sh
 
 client_attempts=0
 while true ; do
-  echo $MYSQL $MYSQL_ARGS -e "select version()";
+  echo $MYSQL_CMD $MYSQL_ARGS -e "select version()";
   failed_start=0;
-  $MYSQL $MYSQL_ARGS -e "select version()" || failed_start=1
+  $MYSQL_CMD $MYSQL_ARGS -e "select version()" || failed_start=1
 
   if [ $failed_start -eq 0 ]; then
     break
