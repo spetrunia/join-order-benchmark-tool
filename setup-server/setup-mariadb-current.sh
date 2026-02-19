@@ -91,7 +91,7 @@ MYSQL_SOCKET="--socket=$SOCKETNAME"
 MYSQL_USER="-uroot"
 MYSQL_ARGS="\$MYSQL_USER \$MYSQL_SOCKET"
 
-MYSQL="$MYSQL_CMD $MYSQL_USER $MYSQL_SOCKET"
+MYSQL="./mariadb-$BRANCH/client/mariadb --socket=$SOCKETNAME -uroot"
 MYSQLD="$HOMEDIR/mariadb-$BRANCH/sql/mariadbd --defaults-file=$HOMEDIR/my-mariadb-$BRANCH.cnf"
 EOF
 
