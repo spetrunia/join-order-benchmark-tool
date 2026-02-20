@@ -19,7 +19,7 @@ where
   group by table_name;
 END
 
-$MYSQL $MYSQL_ARGS imdbload < tmp-mysql/generate-analyze.sql > tmp-mysql/eits-analyze.sql
+$MYSQL_CMD $MYSQL_ARGS imdbload < tmp-mysql/generate-analyze.sql > tmp-mysql/eits-analyze.sql
 
-$MYSQL $MYSQL_ARGS imdbload < tmp-mysql/eits-analyze.sql
+$MYSQL_CMD $MYSQL_ARGS imdbload < tmp-mysql/eits-analyze.sql
 
