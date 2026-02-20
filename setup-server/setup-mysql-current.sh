@@ -1,8 +1,12 @@
 #!/bin/bash
 
-HOMEDIR=`pwd`
+if [ "x${1}y" == "xy" ] ; then 
+  echo "Usage: $0 BRANCH_NAME"
+  exit 1
+fi
 
-BRANCH=8.4
+BRANCH="${1}"
+HOMEDIR=`pwd`
 DATADIR="$HOMEDIR/mysql-$BRANCH-data"
 
 if [ -d $DATADIR ] ; then

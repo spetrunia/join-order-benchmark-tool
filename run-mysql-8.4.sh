@@ -1,4 +1,4 @@
-bash setup-server/setup-mysql-8.0.sh
+bash setup-server/setup-mysql-current.sh 8.4
 bash test-harness/01-setup.sh
 bash test-harness/10-load-data.sh
 bash test-harness/mysql-50-eits-analyze.sh
