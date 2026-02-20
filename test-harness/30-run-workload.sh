@@ -3,5 +3,5 @@
 #source tmp-mariadb/client-config.sh
 source mysql-vars.sh
 
-$MYSQL $MYSQL_ARGS imdbload < tmp-mariadb/run-queries.sql | tee tmp-mariadb/log.txt
+$MYSQL_CMD $MYSQL_ARGS imdbload < tmp-mariadb/run-queries.sql | tee tmp-mariadb/log.txt
 

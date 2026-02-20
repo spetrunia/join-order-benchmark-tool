@@ -2,5 +2,6 @@
 
 source mysql-vars.sh
 
-echo "select * from my_job_result" | $MYSQL $MYSQL_ARGS imdbload | tee -a tmp-mariadb/$BRANCH-result.txt
+VERSION=`$MYSQL_CMD $MYSQL_ARGS -BN -e'select version()'`
+echo "select * from my_job_result" | $MYSQL_CMD $MYSQL_ARGS imdbload | tee -a tmp-mariadb/$VERSION-result.txt
 

@@ -11,5 +11,5 @@ echo "analyze table $a persistent for all;"
 done
 )>> tmp-mariadb/eits-analyze.sql
 
-$MYSQL $MYSQL_ARGS imdbload < tmp-mariadb/eits-analyze.sql
+$MYSQL_CMD $MYSQL_ARGS imdbload < tmp-mariadb/eits-analyze.sql
 
